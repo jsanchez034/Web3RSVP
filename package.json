@@ -4,7 +4,8 @@
   "description": "Dope web3 event rsvp dapp 👊",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "compile": "npx hardhat compile",
+    "test": "node scripts/run.js"
   },
   "author": "JP Sanchez",
   "license": "ISC",
