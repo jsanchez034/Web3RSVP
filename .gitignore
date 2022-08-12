@@ -5,6 +5,9 @@ coverage.json
 typechain
 typechain-types
 
+#Subgraph build files
+subgraph/web3-rsvp/build
+
 #Hardhat files
 cache
 artifacts

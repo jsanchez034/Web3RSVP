@@ -6,7 +6,10 @@
   "scripts": {
     "compile:smart-contract": "pnpm --filter contracts run compile",
     "deploy:smart-contract": "pnpm --filter contracts run deploy",
-    "test:smart-contract": "pnpm --filter contracts run test"
+    "test:smart-contract": "pnpm --filter contracts run test",
+    "generate-types:subgraph": "pnpm --filter web3-rsvp run codegen",
+    "build:subgraph": "pnpm --filter web3-rsvp run build",
+    "deploy:subgraph": "pnpm --filter web3-rsvp run deploy"
   },
   "author": "JP Sanchez",
   "license": "ISC"
