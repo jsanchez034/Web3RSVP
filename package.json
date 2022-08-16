@@ -9,7 +9,8 @@
     "test:smart-contract": "pnpm --filter contracts run test",
     "generate-types:subgraph": "pnpm --filter web3-rsvp run codegen",
     "build:subgraph": "pnpm --filter web3-rsvp run build",
-    "deploy:subgraph": "pnpm --filter web3-rsvp run deploy"
+    "deploy:subgraph": "pnpm --filter web3-rsvp run deploy",
+    "dev:frontend": "pnpm -filter frontend run dev"
   },
   "author": "JP Sanchez",
   "license": "ISC"
