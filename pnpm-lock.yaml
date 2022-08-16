@@ -303,6 +303,7 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - bufferutil
+      - encoding
       - react-native
       - supports-color
       - utf-8-validate
@@ -4445,6 +4446,8 @@ packages:
       eth-query: 2.1.2
       json-rpc-engine: 6.1.0
       pify: 5.0.0
+    transitivePeerDependencies:
+      - encoding
     dev: false
 
   /eth-json-rpc-middleware/6.0.0:
@@ -4458,9 +4461,11 @@ packages:
       ethereumjs-util: 5.2.1
       json-rpc-engine: 5.4.0
       json-stable-stringify: 1.0.1
-      node-fetch: 2.6.1
+      node-fetch: 2.6.7
       pify: 3.0.0
       safe-event-emitter: 1.0.1
+    transitivePeerDependencies:
+      - encoding
     dev: false
 
   /eth-lib/0.1.29:
