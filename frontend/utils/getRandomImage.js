@@ -1,4 +1,4 @@
-let nextImages = [
+const nextImages = [
   "/candyland.png",
   "/mojito.png",
   "/rainbow.png",
