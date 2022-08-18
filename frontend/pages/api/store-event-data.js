@@ -38,7 +38,7 @@ async function storeEventData(req, res) {
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
-    return await storeEventData(req, rest);
+    return await storeEventData(req, res);
   }
   
   return res

@@ -1,8 +1,9 @@
 import abiJSON from "./Web3RSVP.json";
 import { ethers } from "ethers";
 
+const contractAddress = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS;
+
 export default function connectContract() {
-  const contractAddress = "0x88FF77db118d551e24D06834612cFD27E6694e94";
   const contractABI = abiJSON.abi;
   let rsvpContract;
   try {
@@ -16,7 +17,7 @@ export default function connectContract() {
       console.log("Ethereum object doesn't exist!");
     }
   } catch (err)  {
-    console.log("ERROR:", error);
+    console.log("ERROR:", err);
   }
 
   return rsvpContract;
