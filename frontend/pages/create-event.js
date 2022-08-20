@@ -34,6 +34,7 @@ export default function CreateEvent() {
         const eventTimestamp = eventDateAndTime.getTime();
         const eventDataCID = cid;
 
+        setLoading(true);
         const txn = await rsvpContract.createNewEvent(
           eventTimestamp,
           deposit,
@@ -41,7 +42,6 @@ export default function CreateEvent() {
           eventDataCID,
           { gasLimit: 900000 }
         );
-        setLoading(true);
         console.log("Minting...", txn.hash);
         
         const wait = await txn.wait();
@@ -113,7 +113,7 @@ export default function CreateEvent() {
     alertBody = "Please wait";
     alertColor = "white";
   } else if (success) {
-    alertType = "loading";
+    alertType = "success";
     alertBody = message;
     alertColor = "palegreen";
   } else if (success === false) {
@@ -333,7 +333,16 @@ export default function CreateEvent() {
               </section>
             )
           }
-
+        {
+          success && eventID && (
+            <div>
+              Success! Please wait a few minutes, then check out your event page{" "}
+              <span className="font-bold">
+                <Link href={`/event/${eventID}`}>here</Link>
+              </span>
+            </div>
+          )
+        }
       </section>
     </div>
   );
