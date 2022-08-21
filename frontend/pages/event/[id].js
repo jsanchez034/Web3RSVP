@@ -1,6 +1,11 @@
 import Head from "next/head";
 import Image from "next/image";
 import { gql } from "@apollo/client";
+import { useState } from "react";
+import connectContract from "../../utils/connectContract";
+import Alert from "../../components/Alert";
+import RsvpButton from "../../components/RsvpButton";
+
 import client from '../../apollo-client';
 import formatTimestamp from '../../utils/formatTimestamp';
 
@@ -12,6 +17,56 @@ import {
 } from "@heroicons/react/outline";
 
 function Event({ event }) {
+  const [success, setSuccess] = useState(null);
+  const [message, setMessage] = useState(null);
+  const [loading, setLoading] = useState(null);
+
+  async function newRSVP() {
+    try {
+      const rsvpContract = connectContract();
+
+      if (rsvpContract) {
+        setLoading(true);
+
+        const txn = await rsvpContract.createNewRSVP(event.id, {
+          value: event.deposit,
+          gasLimit: 3000000,
+        });
+        console.log("Minting...", txn.hash);
+
+        await txn.wait();
+        console.log("Minted --- ", txn.hash);
+        setSuccess(true);
+        setLoading(false);
+        setMessage("Your RSVP has been created successfully.");
+      } else {
+        console.log("Error getting contract.")
+      }
+    } catch (err) {
+      setSuccess(false);
+      setMessage("Error!");
+      setLoading(false);
+      console.log(err);
+    }
+  }
+
+  let alertType = null;
+  let alertBody = null;
+  let alertColor = null;
+
+  if (loading) {
+    alertType = "loading";
+    alertBody = "Please wait";
+    alertColor = "white";
+  } else if (success) {
+    alertType = "success";
+    alertBody = message;
+    alertColor = "palegreen";
+  } else if (success === false) {
+    alertType = "failed";
+    alertBody = message;
+    alertColor = "palevioletred";
+  }
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -21,6 +76,16 @@ function Event({ event }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <section className="relative py-12">
+        {
+          alertType && (
+            <Alert
+              alertType={alertType}
+              alertBody={alertBody}
+              triggerAlert={true}
+              color={alertColor}
+            />
+          )
+        }
         <h6 className="mb-2">{formatTimestamp(event.eventTimestamp)}</h6>
         <h1 className="text-3xl tracking-tight font-extrabold text-gray-900 sm:text-4xl md:text-5xl mb-6 lg:mb-12">
           { event.name }
@@ -35,7 +100,7 @@ function Event({ event }) {
             <p>{ event.description }</p>
           </div>
           <div className="max-w-xs w-full flex flex-col gap-4 mb-6 lg:mb-0">
-           
+            <RsvpButton event={event} onNewRSVP={newRSVP} />
             <div className="flex item-center">
               <UsersIcon className="w-6 mr-2" />
               <span className="truncate">
