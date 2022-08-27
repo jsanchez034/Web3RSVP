@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { useReactiveVar } from "@apollo/client";
 
 import Navbar from "./Navbar";
@@ -8,12 +7,6 @@ import { themeVar } from '../apollo-client';
 
 const Layout = ({ children }) => {
   let currentTheme = useReactiveVar(themeVar);
-
-
-  useEffect(() => {
-    const intialThemeVar = window.localStorage.getItem('theme');
-    themeVar(intialThemeVar);
-  }, []);
   
   return (
     <div className={`${currentTheme} font-serif flex flex-col min-h-screen`}>
