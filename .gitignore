@@ -12,3 +12,4 @@ subgraph/web3-rsvp/build
 cache
 artifacts
 .DS_Store
+.gitsigners
