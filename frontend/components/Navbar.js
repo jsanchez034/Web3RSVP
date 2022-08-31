@@ -30,7 +30,7 @@ export default function Navbar() {
             <div className="ml-10 space-x-4 flex items-center">
               <DarkModeToggle />
               <Link href="/create-event">
-                <a className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-indigo-700 border border-indigo-100 hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                <a className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-indigo-700 border border-indigo-100 hover:bg-indigo-50 dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-slate-700 dark:focus:ring-slate-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                   Create Event
                 </a>
               </Link>
